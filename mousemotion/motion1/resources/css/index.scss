@@ -127,6 +127,7 @@ p {
         .headline {
             display: block;
             width: 550px;
+            margin-bottom: 100px;
             font-size: 64px;
             text-align: center;
             .txt_sm {
@@ -156,11 +157,16 @@ p {
         position: relative;
         width: 100vw;
         height: 100vh;
+        max-width: 2820px;
+        max-height: 2350px;
+        margin: 0 auto;
     }
     .heros_cont {
+        position: relative;
         // display: flex;
         // justify-content: center;
         // align-items: center;
+        width: 100%;
         height: 100%;
 
         .content {
@@ -169,11 +175,14 @@ p {
             left: 0;
             width: 100%;
             height: 100%;
+            pointer-events: none;
+            width: 100%;
+            height: 100%;
             // top: 50%;
             // left: 50%;
             // transform: translate(-50%, -50%);
-            // width: 2820px;
-            // height: 2350px;
+            // max-width: 2820px;
+            // max-height: 2350px;
             transform-style: preserve-3d;
             transform-origin: center;
             &:first-child {
@@ -197,6 +206,7 @@ p {
             }
             .unit_tile {
                 position: absolute;
+                pointer-events: all;
                 &::after {
                     position: absolute;
                     top: 0;
@@ -218,22 +228,22 @@ p {
                     }
                 }
                 &_0 {
-                    transform: translate(-331px, 395px);
+                    transform: translate(-331px, 328px);
                 }
                 &_1 {
-                    transform: translate(250px, 443px);
+                    transform: translate(250px, 356px);
                 }
 
                 &_2 {
-                    transform: translate(400px, -362px);
+                    transform: translate(400px, -460px);
                 }
 
                 &_3 {
-                    transform: translate(-627px, -283px);
+                    transform: translate(-627px, -313px);
                 }
 
                 &_4 {
-                    transform: translate(87px, -742px);
+                    transform: translate(87px, -870px);
                 }
                 &_5 {
                     transform: translate(-795px, 778px);
@@ -244,15 +254,15 @@ p {
                 }
 
                 &_7 {
-                    transform: translate(-230px, 755px);
+                    transform: translate(-230px, 702px);
                 }
 
                 &_8 {
-                    transform: translate(509px, 72px);
+                    transform: translate(509px, 36px);
                 }
 
                 &_9 {
-                    transform: translate(-150px, -394px);
+                    transform: translate(-150px, -483px);
                 }
 
                 &_10 {
@@ -260,11 +270,11 @@ p {
                 }
 
                 &_11 {
-                    transform: translate(-531px, 51px);
+                    transform: translate(-531px, 11px);
                 }
 
                 &_12 {
-                    transform: translate(-1062px, 86px);
+                    transform: translate(-1000px, 86px);
                 }
 
                 &_13 {
@@ -276,27 +286,27 @@ p {
                 }
 
                 &_15 {
-                    transform: translate(1125px, -634px);
+                    transform: translate(1109px, -448px);
                 }
 
                 &_16 {
-                    transform: translate(808px, -288px);
+                    transform: translate(744px, -336px);
                 }
 
                 &_17 {
-                    transform: translate(326px, 804px);
+                    transform: translate(299px, 694px);
                 }
 
                 &_18 {
-                    transform: translate(772px, 494px);
+                    transform: translate(840px, 446px);
                 }
 
                 &_19 {
-                    transform: translate(804px, 833px);
+                    transform: translate(744px, 761px);
                 }
 
                 &_20 {
-                    transform: translate(940px, 150px);
+                    transform: translate(1000px, 150px);
                 }
 
                 .img_wrap {
@@ -318,6 +328,9 @@ p {
                 z-index: 3;
                 width: 300px;
                 transition: 0.3s;
+                &.top {
+                    top: 0;
+                }
                 .her_name {
                     font-weight: 700;
                 }
