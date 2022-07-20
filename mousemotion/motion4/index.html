@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./resources/css/index.css">
+	<title>마우스를 따라다니는 돋보기 효과</title>
+</head>
+<body>
+	<div class="wrap">
+		<div class="container"> 
+			<div class="blurred"></div>
+			<div class="overlay"></div>
+			<div id="sharpen" class="sharp"></div>
+		</div>
+	</div>
+    <script src="../../resources/js/plugin/jquery-3.6.0.js"></script>
+	<script src="../../resources/js/plugin/TweenMax.min.js"></script>
+	<script>
+		var $container = document.querySelector(".container"),
+			$sharp = $container.querySelector("#sharpen")
+			bounds = $sharp.getBoundingClientRect();
+
+		$container.addEventListener("mousemove",function(e){
+			TweenMax.to($sharp, 0.1, {
+				"left" : e.pageX - (bounds.width / 2),
+				"top" : e.pageY - (bounds.height / 2),
+			});
+		});
+	</script>
+</body>
+</html>
