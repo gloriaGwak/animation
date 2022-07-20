@@ -1,0 +1,78 @@
+/* ========================================= *  BEST VIEWED FULLSCREEN https://codepen.io/ig_design/full/qBbdMRJ ========================================= */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,900;1,900&display=swap");
+:root { --dark-blue: #102770; --white-gr: #c4c3ca; --yellow: #ffeba7; }
+
+body { margin: 0; padding: 0; color: var(--white-gr); background-color: var(--dark-blue); overflow-x: hidden; }
+
+ul, li { margin: 0 auto; padding: 0; list-style: none; }
+
+.cursor { height: 36px; width: 36px; position: fixed; pointer-events: none; left: 0; top: 0; -webkit-transition: all 0.1s linear; transition: all 0.1s linear; }
+
+.cursor.active { background-color: var(--white-gr); mix-blend-mode: difference; }
+
+.cursor { border: 2px solid var(--white-gr); border-radius: 50%; opacity: 0; visibility: hidden; z-index: 9999999; }
+
+a { font-size: 65px; line-height: 1; font-family: "Roboto", sans-serif; margin-bottom: 0.6rem; font-weight: 900; color: var(--white-gr); -webkit-transition: all 250ms linear; transition: all 250ms linear; }
+
+a:hover { color: var(--yellow); text-decoration: none; }
+
+a span { white-space: nowrap; padding: 0.3vw; }
+
+.cont { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; height: 100vh; }
+
+.section { overflow-x: hidden; position: relative; width: 100%; max-width: 1200px; margin: 0 auto; --initial: 0; --final: -20%; --initial-2: 30%; --final-2: 50%; }
+
+.section::before { position: absolute; top: 0; left: 0; width: 80px; height: 100%; z-index: 2; display: block; background-image: -webkit-gradient(linear, left top, right top, from(var(--dark-blue)), to(rgba(255, 255, 255, 0))); background-image: -webkit-linear-gradient(left, var(--dark-blue), rgba(255, 255, 255, 0)); background-image: linear-gradient(to right, var(--dark-blue), rgba(255, 255, 255, 0)); pointer-events: none; content: ""; }
+
+.section::after { position: absolute; top: 0; right: 0; width: 80px; height: 100%; z-index: 2; display: block; background-image: -webkit-gradient(linear, right top, left top, from(var(--dark-blue)), to(rgba(255, 255, 255, 0))); background-image: -webkit-linear-gradient(right, var(--dark-blue), rgba(255, 255, 255, 0)); background-image: linear-gradient(to left, var(--dark-blue), rgba(255, 255, 255, 0)); pointer-events: none; content: ""; }
+
+.section .link_list { padding: 100px 0; position: relative; }
+
+.section .link_list li:nth-child(2) .link, .section .link_list li:nth-child(4) .link { -webkit-transform: translate3d(var(--initial-2), 0, 0); transform: translate3d(var(--initial-2), 0, 0); -webkit-animation: slide-2 5s linear infinite; animation: slide-2 5s linear infinite; left: -100%; }
+
+.section .link_list li.active .link { -webkit-transition-duration: 0.4s; transition-duration: 0.4s; -webkit-animation-play-state: paused; animation-play-state: paused; opacity: 1; color: var(--yellow); text-decoration: none; }
+
+.section .link_list li .link { width: -webkit-fit-content; width: -moz-fit-content; width: fit-content; display: -webkit-box; display: -ms-flexbox; display: flex; position: relative; -webkit-transform: translate3d(var(--initial), 0, 0); transform: translate3d(var(--initial), 0, 0); -webkit-animation: slide 5s linear infinite; animation: slide 5s linear infinite; -webkit-animation-play-state: running; animation-play-state: running; opacity: 0.2; pointer-events: all; }
+
+.section .link_list li .link:hover { -webkit-transition-duration: 0.4s; transition-duration: 0.4s; -webkit-animation-play-state: paused; animation-play-state: paused; opacity: 1; color: var(--yellow); text-decoration: none; }
+
+.section .link_list li .link span { pointer-events: none; }
+
+.section .img_list { position: absolute; padding: 0; top: 50%; left: 50%; margin-left: -180px; margin-top: -180px; z-index: -1; }
+
+.section .img_list li { position: absolute; display: block; width: 360px; height: 360px; border-radius: 50%; background-position: center; background-size: cover; opacity: 0; -webkit-transform: scale(0.95) rotate(10deg); -ms-transform: scale(0.95) rotate(10deg); transform: scale(0.95) rotate(10deg); -webkit-transition: all 350ms linear; transition: all 350ms linear; }
+
+.section .img_list li.show { opacity: 0.5; -webkit-transform: scale(1) rotate(0deg); -ms-transform: scale(1) rotate(0deg); transform: scale(1) rotate(0deg); }
+
+.section .img_list li:nth-child(1) { background-image: url("../images/menu-1.jpg"); }
+
+.section .img_list li:nth-child(2) { background-image: url("../images/menu-2.jpg"); }
+
+.section .img_list li:nth-child(3) { background-image: url("../images/menu-3.jpg"); }
+
+.section .img_list li:nth-child(4) { background-image: url("../images/menu-4.jpg"); }
+
+.section .img_list li:nth-child(5) { background-image: url("../images/menu-5.jpg"); }
+
+@-webkit-keyframes slide { 0% { -webkit-transform: translate3d(var(--initial), 0, 0); transform: translate3d(var(--initial), 0, 0); }
+  100% { -webkit-transform: translate3d(var(--final), 0, 0); transform: translate3d(var(--final), 0, 0); } }
+
+@keyframes slide { 0% { -webkit-transform: translate3d(var(--initial), 0, 0); transform: translate3d(var(--initial), 0, 0); }
+  100% { -webkit-transform: translate3d(var(--final), 0, 0); transform: translate3d(var(--final), 0, 0); } }
+
+@-webkit-keyframes slide-2 { 0% { -webkit-transform: translate3d(var(--initial-2), 0, 0); transform: translate3d(var(--initial-2), 0, 0); }
+  100% { -webkit-transform: translate3d(var(--final-2), 0, 0); transform: translate3d(var(--final-2), 0, 0); } }
+
+@keyframes slide-2 { 0% { -webkit-transform: translate3d(var(--initial-2), 0, 0); transform: translate3d(var(--initial-2), 0, 0); }
+  100% { -webkit-transform: translate3d(var(--final-2), 0, 0); transform: translate3d(var(--final-2), 0, 0); } }
+
+/* #Media ================================================== */
+@media (max-width: 991px) { .section { --initial-2: 20%; --final-2: 40%; }
+  .section .img_list { margin-left: -140px; margin-top: -140px; }
+  .section .img_list li { width: 280px; height: 280px; }
+  a { font-size: 55px; } }
+
+@media (max-width: 767px) { .section { --initial-2: 10%; --final-2: 30%; } }
+
+@media (max-width: 575px) { .section { --initial-2: -20%; --final-2: 0; }
+  a { font-size: 45px; } }

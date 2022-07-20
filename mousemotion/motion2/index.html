@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./resources/css/index.css">
+	<title>마우스 오버 시 커서 사이즈 변화 및 리스트 이미지 변경</title>
+</head>
+<body>
+	<div class="wrap">
+		<div class="container"> 
+			<div class="cont">
+				<div class="section"> 
+					<ul class="link_list">
+						<li>
+							<a href="javascript:void(0);" class="link">
+								<span>Case Studies -</span>
+								<span>Case Studies -</span>
+								<span>Case Studies -</span>
+								<span>Case Studies -</span>
+								<span>Case Studies -</span>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0);" class="link">
+								<span>What We Do -</span>
+								<span>What We Do -</span>
+								<span>What We Do -</span>
+								<span>What We Do -</span>
+								<span>What We Do -</span>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0);" class="link">
+								<span>Our Crew -</span>
+								<span>Our Crew -</span>
+								<span>Our Crew -</span>
+								<span>Our Crew -</span>
+								<span>Our Crew -</span>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0);" class="link">
+								<span>Our Stories -</span>
+								<span>Our Stories -</span>
+								<span>Our Stories -</span>
+								<span>Our Stories -</span>
+								<span>Our Stories -</span>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0);" class="link">
+								<span>Get In Touch -</span>
+								<span>Get In Touch -</span>
+								<span>Get In Touch -</span>
+								<span>Get In Touch -</span>
+								<span>Get In Touch -</span>
+							</a>
+						</li>
+					</ul>
+					<ul class="img_list">
+						<li class="show"></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+			
+		  <!-- Page cursor
+		  ================================================== -->
+		  
+		<div class="cursor" id="cursor"></div>
+	</div>
+    <script src="../../resources/js/plugin/jquery-3.6.0.js"></script>
+	<script src="../../resources/js/plugin/TweenMax.min.js"></script>
+	<script>
+		var $cont = document.querySelector(".cont"),
+			$liList = $cont.querySelector(".link_list"),
+			$li = $liList.querySelectorAll("li"),
+			$imgList = $cont.querySelector(".img_list"),
+			$img = $imgList.querySelectorAll("li"),
+			$cursor = document.querySelector("#cursor"),
+			bounds = $cursor.getBoundingClientRect();
+			
+		$cont.addEventListener("mousemove",function(e){
+			cursor(e);
+			$li.forEach(function(target,i){
+				var $link = target.querySelector("a")
+
+				$link.addEventListener("mouseenter",function(){
+					for(var idx = 0; idx < $img.length; idx++){
+						$img[idx].classList.remove("show");
+						if(idx == i){
+							$img[i].classList.add("show");
+						};
+					};
+				});
+			});
+		});
+
+		function cursor(e){
+			if(e.target.classList == "link"){
+				$cursor.classList.add("active");
+					TweenMax.to($cursor, 0.1, {
+					"opacity" : "1",
+					"visibility" : "visible",
+					"x" : e.clientX - (bounds.width / 2) + "px",
+					"y" : e.clientY - (bounds.height / 2) + "px",
+					"scale" : "2",
+				});
+			}else{
+				$cursor.classList.remove("active");
+				TweenMax.to($cursor, 0.1, {
+					"opacity" : "1",
+					"visibility" : "visible",
+					"x" : e.clientX - (bounds.width / 2) + "px",
+					"y" : e.clientY - (bounds.height / 2) + "px",
+					"scale" : "1",
+				});
+			}
+		}
+	</script>
+</body>
+</html>
+<!-- https://wsss.tistory.com/1405?category=797449 -->
+<!-- https://wsss.tistory.com/1787?category=797449 -->
+<!-- https://wsss.tistory.com/1369 -->

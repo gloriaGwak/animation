@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./resources/css/index.css">
+	<title>마우스 오버 시 사이트 이미지 노출</title>
+</head>
+<body>
+	<div class="wrap">
+		<div class="container">
+			<div class="img_wrap">
+				<img src="./resources/images/adidas.jpg" alt="" data-name="adidas">
+				<img src="./resources/images/nike.jpg" alt="" data-name="nike">
+				<img src="./resources/images/river.jpg" alt="" data-name="river">
+				<img src="./resources/images/final.jpg" alt="" data-name="final">
+			</div>
+			<ul class="list">
+				<li class="cont">
+					<a href="javascript:void(0);" data-target="adidas">
+						<h2>Adidas</h2>
+						<div class="cont__image"></div>
+					</a>
+				</li>
+				<li class="cont">
+					<a href="javascript:void(0);" data-target="nike">
+						<h2>Nike</h2>
+						<div class="cont__image"></div>
+					</a>
+				</li>
+				<li class="cont">
+					<a href="javascript:void(0);" data-target="river">
+						<h2>River</h2>
+						<div class="cont__image"></div>
+					</a>
+				</li>
+				<li class="cont">
+					<a href="javascript:void(0);" data-target="final">
+						<h2>Waves</h2>
+						<div class="cont__image"></div>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+    <script src="../../resources/js/plugin/jquery-3.6.0.js"></script>
+	<script src="../../resources/js/plugin/TweenMax.min.js"></script>
+	<script>
+		var $container = document.querySelector(".container"),
+			$list = $container.querySelector(".list"),
+			$cont = $list.querySelectorAll(".cont"),
+			$imgWrap = $container.querySelector(".img_wrap"),
+			$img = $imgWrap.querySelectorAll("img"),
+			bounds = $imgWrap.getBoundingClientRect(),
+			timer, imgSrc, moveX, moveY;
+			
+		$list.addEventListener("mousemove",function(e){
+			var target = e.target.dataset.target;
+
+			if(Number(-80) < e.movementY && e.movementY < Number(80)){
+				moveY = e.movementY;
+			}
+			if(Number(-80) < e.movementX && e.movementX < Number(80)){
+				moveX = e.movementX;
+			}
+
+			$img.forEach(function(item,idx){
+				var name = item.dataset.name;
+
+				$img[idx].classList.remove("active");
+				if(target == name){
+					item.classList.add("active");
+					imgMotion(e,idx);
+				}
+			})
+		});
+
+		$list.addEventListener("mouseleave",function(e){
+			hidden(e);
+		});
+		function imgMotion(e){
+			TweenMax.to($imgWrap, 0.5, {
+				"opacity" : "1",
+				"visibility" : "visible",
+				"x" : e.clientX - bounds.left + "px",
+				"y" : e.clientY - (bounds.bottom / 2) + "px",
+				"skewX" : moveX + "deg",
+				"skewY" : moveY + "deg",
+				"rotationX" : moveX + "deg",
+				"rotationY" : moveY + "deg",
+				onComplete : function(){
+					evtComplete(e);
+				},
+			});
+		}
+		function evtComplete(e){
+			TweenMax.to($imgWrap, 0.5, {
+				"x" : e.clientX - bounds.left + "px",
+				"y" : e.clientY - (bounds.bottom / 2) + "px",
+				"skewX" : "0",
+				"skewY" : "0",
+				"rotationX" : "0",
+				"rotationY" : "0",
+			});
+		}
+
+		function hidden(e){
+			TweenMax.to($imgWrap, 0.2, {
+				"opacity" : "0",
+				"visibility" : "hidden",
+			});
+		}
+	</script>
+</body>
+</html>
+<!-- https://wsss.tistory.com/1405?category=797449 -->
+<!-- https://wsss.tistory.com/1787?category=797449 -->
+<!-- https://wsss.tistory.com/1369 -->

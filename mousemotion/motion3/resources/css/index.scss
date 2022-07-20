@@ -1,0 +1,152 @@
+@font-face {
+    src: url("https://assets.codepen.io/2479807/gilroy-regular.ttf");
+    font-family: "Gilroy";
+}
+
+@font-face {
+    src: url("https://assets.codepen.io/2479807/gilroy-semibold.woff2");
+    font-family: "Gilroy Semi-Bold";
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:after,
+*:before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+    outline: none;
+}
+
+img,
+embed,
+iframe,
+object,
+video {
+    display: block;
+    max-width: 100%;
+    border-style: none;
+}
+ul,
+li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+input,
+textarea,
+select,
+button {
+    color: inherit;
+    font: inherit;
+    letter-spacing: inherit;
+    border: none;
+    background: none;
+}
+
+@mixin dropShadow {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02), 0 2px 4px rgba(0, 0, 0, 0.02), 0 4px 8px rgba(0, 0, 0, 0.02), 0 8px 16px rgba(0, 0, 0, 0.02), 0 16px 32px rgba(0, 0, 0, 0.02),
+        0 32px 64px rgba(0, 0, 0, 0.02);
+}
+
+:root {
+    --color-primary: #00083d;
+    --color-secondary: #ff0065;
+}
+
+body {
+    font-family: "Gilroy", sans-serif;
+    font-size: 16px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.5;
+}
+
+%heading {
+    color: var(--color-primary);
+}
+
+h2 {
+    @extend %heading;
+    font-size: 85px;
+    font-family: "Gilroy Semi-Bold";
+    line-height: 1.2;
+    letter-spacing: -0.05em;
+    transition: 0.2s ease color;
+    pointer-events: none;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 80px;
+}
+.img_wrap {
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    width: 350px;
+    height: 200px;
+    pointer-events: none;
+    will-change: transform;
+    img {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+        &.active {
+            display: block;
+        }
+    }
+}
+.list {
+    counter-reset: number-counter;
+}
+
+.cont {
+    position: relative;
+    &::before {
+        font-family: "Gilroy Semi-Bold";
+        font-size: 20px;
+        position: absolute;
+        left: 0px;
+        top: 40px;
+
+        counter-increment: number-counter;
+        content: counter(number-counter) ".";
+    }
+
+    &:hover {
+        .cont__image {
+            opacity: 1;
+        }
+
+        h2 {
+            color: var(--color-secondary);
+        }
+    }
+
+    a {
+        display: block;
+        padding: 58px 0;
+        border-bottom: solid 1px #ccced9;
+    }
+
+    &__image {
+        background-color: #eee;
+        opacity: 0;
+        visibility: hidden;
+    }
+}
